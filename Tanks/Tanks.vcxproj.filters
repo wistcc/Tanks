@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="App.cpp">
+      <Filter>Engine\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLEvent.cpp">
+      <Filter>Engine\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>Engine\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Game\Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.hpp">
+      <Filter>Engine\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLEvent.hpp">
+      <Filter>Engine\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.hpp">
+      <Filter>Engine\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Engine\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.hpp">
+      <Filter>Engine\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.hpp">
+      <Filter>Game\Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{a53d6223-d0f4-449b-aa7a-a61f0fe6bfef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Header files">
+      <UniqueIdentifier>{23d9c8c6-aeef-48fa-871f-2c8f8224d451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source files">
+      <UniqueIdentifier>{2a911eb8-3485-4025-8210-8b203744ea08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{b124afca-19ce-4935-ac03-8bfe59498daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Header files">
+      <UniqueIdentifier>{e9dab11f-c6f9-4111-9cab-226a3b4875de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Source files">
+      <UniqueIdentifier>{a846348f-ce84-4505-af9c-239712bcbd91}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
