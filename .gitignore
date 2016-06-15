@@ -11,16 +11,16 @@
 *.userprefs
 
 # Build results
-BoilerPlate/[Dd]ebug/
-BoilerPlate/[Dd]ebugPublic/
-BoilerPlate/[Rr]elease/
-BoilerPlate/[Rr]eleases/
-BoilerPlate/x64/
-BoilerPlate/x86/
-BoilerPlate/bld/
-BoilerPlate/[Bb]in/
-BoilerPlate/[Oo]bj/
-BoilerPlate/[Ll]og/
+Tanks/[Dd]ebug/
+Tanks/[Dd]ebugPublic/
+Tanks/[Rr]elease/
+Tanks/[Rr]eleases/
+Tanks/x64/
+Tanks/x86/
+Tanks/bld/
+Tanks/[Bb]in/
+Tanks/[Oo]bj/
+Tanks/[Ll]og/
 x64/*
 Debug/*
 Release/*
@@ -258,4 +258,4 @@ paket-files/
 
 #Linux ignores
 **.o
-BoilerPlate/main
+Tanks/main

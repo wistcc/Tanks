@@ -3,17 +3,19 @@
 #define TANK_HPP
 
 #include <SDL2/SDL_opengl.h>
-#include "Texture.hpp"
+#include "IRender.hpp"
+#include "Sprite.hpp"
 
 namespace Combat
 {
-	class Tank
+	class Tank : Engine::IRender
 	{
 	public:
-		Tank(const char* szFilePath);
+		Tank(const char* szFilePath, int rows, int columns);
+		void Teleport(int _x, int _y) { m_sprite->Teleport(_x, _y); }
 		void Render();
 	private:
-		GLuint m_texture;
+		Engine::Sprite* m_sprite;
 	};
 }
 

@@ -6,6 +6,7 @@
 // C++ STL
 #include <cassert>
 #include <iostream>
+#include "TileMap.hpp"
 
 // 
 #include "App.hpp"
@@ -35,9 +36,11 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
+	Combat::TileMap* map = new Combat::TileMap(WIDTH, HEIGHT, 1);
+
 	// Execute game
 	//
-	app->Execute();
+	//app->Execute();
 
 	// Delete game object
 	//

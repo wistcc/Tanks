@@ -18,7 +18,8 @@ namespace Engine
 	const float DESIRED_FRAME_RATE = 60.0f;
 	const float DESIRED_FRAME_TIME = 1.0f / DESIRED_FRAME_RATE;
 	
-	static Combat::Tank* tank;
+	static Combat::Tank* tank1;
+	static Combat::Tank* tank2;
 
 	App::App(const std::string& title, const int width, const int height)
 		: m_title(title)
@@ -34,7 +35,8 @@ namespace Engine
 
 	App::~App()
 	{
-		delete tank;
+		delete tank1;
+		delete tank2;
 		CleanupSDL();
 	}
 
@@ -46,7 +48,11 @@ namespace Engine
 			return;
 		}
 
-		tank = new Combat::Tank("download.png");
+		tank1 = new Combat::Tank("horse.gif", 4, 4);
+		//tank2 = new Combat::Tank("explosion.png", 5, 5);
+
+		/*tank1->Teleport(-200, 0);
+		tank2->Teleport(100, 0);*/
 
 		m_state = GameState::RUNNING;
 
@@ -152,7 +158,9 @@ namespace Engine
 			glVertex2f(0.5f , 0.5f);			
 		glEnd();*/
 		
-		tank->Render();
+		//tank2->Render();
+		tank1->Render();
+		
 		SDL_GL_SwapWindow(m_mainWindow);
 	}
 
@@ -211,17 +219,17 @@ namespace Engine
 
 		// Set Mode to GL_PROJECTION
 		//
-		/*glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();*/
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
 
 		// Set projection MATRIX to ORTHO
 		//
-		//glOrtho(-halfWidth, halfWidth, -halfHeight, halfHeight, -1, 1);
+		glOrtho(-halfWidth, halfWidth, -halfHeight, halfHeight, -1, 1);
 
 
 		// Setting Mode to GL_MODELVIEW
 		//
-		//glMatrixMode(GL_MODELVIEW);
+		glMatrixMode(GL_MODELVIEW);
 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_BLEND);

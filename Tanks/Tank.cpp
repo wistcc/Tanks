@@ -1,22 +1,15 @@
 #include "Tank.hpp"
+#include "TextureManager.hpp"
 
 namespace Combat
 {
-	Tank::Tank(const char* szFilePath)
+	Tank::Tank(const char* szFilePath, int rows, int columns)
 	{
-		m_texture = Engine::Texture::LoadTexture(szFilePath);
+		m_sprite = new Engine::Sprite(szFilePath, rows, columns);
 	}
 
 	void Tank::Render()
 	{
-		glBindTexture(GL_TEXTURE_2D, m_texture);
-		glEnable(GL_TEXTURE_2D);
-		glBegin(GL_TRIANGLE_STRIP);
-		glTexCoord2i(0, 0); glVertex2f(-0.5f, 0.5f);
-		glTexCoord2i(1, 0); glVertex2f(0.5f, 0.5f);
-		glTexCoord2i(0, 1); glVertex2f(-0.5f, -0.5f);
-		glTexCoord2i(1, 1); glVertex2f(0.5f, -0.5f);
-		glEnd();
-		glDisable(GL_TEXTURE_2D);
+		m_sprite->Render();
 	}
 }

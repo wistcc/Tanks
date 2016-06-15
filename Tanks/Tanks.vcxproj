@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A725D716-B24E-4E54-85BF-1EB3E4C30D37}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Tanks</RootNamespace>
+    <RootNamespace>BoilerPlate</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <ProjectName>Tanks</ProjectName>
   </PropertyGroup>
@@ -174,17 +174,30 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClCompile Include="App.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SDLEvent.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="TimeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
+    <ClInclude Include="IRender.hpp" />
     <ClInclude Include="SDLEvent.hpp" />
+    <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Tank.hpp" />
     <ClInclude Include="Texture.hpp" />
+    <ClInclude Include="TextureManager.hpp" />
+    <ClInclude Include="TileMap.hpp" />
     <ClInclude Include="TimeManager.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Maps\map1.cbl" />
+    <None Include="Maps\map2.cbl" />
+    <None Include="Maps\map3.cbl" />
+    <None Include="Maps\map4.cbl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

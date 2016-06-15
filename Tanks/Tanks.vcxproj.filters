@@ -17,6 +17,15 @@
     <ClCompile Include="Tank.cpp">
       <Filter>Game\Source files</Filter>
     </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Engine\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Engine\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Game\Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp">
@@ -35,6 +44,18 @@
       <Filter>Engine\Header files</Filter>
     </ClInclude>
     <ClInclude Include="Tank.hpp">
+      <Filter>Game\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.hpp">
+      <Filter>Engine\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.hpp">
+      <Filter>Engine\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="IRender.hpp">
+      <Filter>Engine\Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.hpp">
       <Filter>Game\Header files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -57,5 +78,22 @@
     <Filter Include="Game\Source files">
       <UniqueIdentifier>{a846348f-ce84-4505-af9c-239712bcbd91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="maps">
+      <UniqueIdentifier>{d8e04167-51a4-445c-8c41-1d6e83184f0e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Maps\map1.cbl">
+      <Filter>maps</Filter>
+    </None>
+    <None Include="Maps\map2.cbl">
+      <Filter>maps</Filter>
+    </None>
+    <None Include="Maps\map3.cbl">
+      <Filter>maps</Filter>
+    </None>
+    <None Include="Maps\map4.cbl">
+      <Filter>maps</Filter>
+    </None>
   </ItemGroup>
 </Project>

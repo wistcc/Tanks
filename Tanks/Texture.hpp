@@ -9,7 +9,29 @@ namespace Engine
 	class Texture
 	{
 	public:
-		static GLuint LoadTexture(const char* szFilePath);
+		/* =============================================================
+		* PUBLIC FUNCTIONS
+		* ============================================================= */
+		Texture(const char* szFilePath);
+		void ApplyTexture();
+
+		/* =============================================================
+		* INLINE FUNCTIONS
+		* ============================================================= */
+		inline int GetWidth() { return m_width; }
+		inline int GetHeight() { return m_height; }
+	private:
+		/* =============================================================
+		* PRIVATE FUNCTIONS
+		* ============================================================= */
+		void LoadTexture(const char* szFilePath);
+
+		/* =============================================================
+		* MEMBERS
+		* ============================================================= */
+		GLuint						m_texture;
+		int							m_width;
+		int							m_height;
 	};
 }
 
