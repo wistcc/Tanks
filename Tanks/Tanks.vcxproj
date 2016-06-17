@@ -180,6 +180,7 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
@@ -192,6 +193,7 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClInclude Include="TextureManager.hpp" />
     <ClInclude Include="TileMap.hpp" />
     <ClInclude Include="TimeManager.hpp" />
+    <ClInclude Include="Vector2.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Maps\map1.cbl" />

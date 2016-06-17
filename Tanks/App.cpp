@@ -20,6 +20,7 @@ namespace Engine
 	
 	static Combat::Tank* tank1;
 	static Combat::Tank* tank2;
+	static Combat::TileMap* map;
 
 	App::App(const std::string& title, const int width, const int height)
 		: m_title(title)
@@ -48,7 +49,9 @@ namespace Engine
 			return;
 		}
 
-		tank1 = new Combat::Tank("horse.gif", 4, 4);
+		map = new Combat::TileMap(800, 800, 1);
+		map->Generate(20, 20, 800 / 20);
+		//tank1 = new Combat::Tank("horse.gif", 4, 4);
 		//tank2 = new Combat::Tank("explosion.png", 5, 5);
 
 		/*tank1->Teleport(-200, 0);
@@ -159,7 +162,9 @@ namespace Engine
 		glEnd();*/
 		
 		//tank2->Render();
-		tank1->Render();
+		//tank1->Render();
+
+		DrawLevel(*map);
 		
 		SDL_GL_SwapWindow(m_mainWindow);
 	}
@@ -276,5 +281,49 @@ namespace Engine
 		// Cleanup SDL pointers
 		//
 		CleanupSDL();
+	}
+
+	void App::DrawLevel(const Combat::TileMap& level) const
+	{
+		int worldUnitsPerTile = level.WorldUnitsPerTile();
+
+		glMatrixMode(GL_MODELVIEW);
+
+		glPushMatrix();
+
+		glTranslatef(worldUnitsPerTile * -0.5f * level.Width(),
+			worldUnitsPerTile * -0.5f * level.Height(),
+			0.f);
+
+		glDisable(GL_TEXTURE_2D);
+		glBegin(GL_QUADS);
+
+		//Draw one strip per row
+		for (int y = 0; y < level.Height(); ++y)
+		{
+			// Draw one quad (two triangles) per column (tile)
+			//		
+			for (int x = 0; x < level.Width(); ++x)
+			{
+				if (level.AtTileLocation(x, y).IsSolid)
+				{
+					glColor3f(1.f, 1.f, .9f);
+				}
+				else
+				{
+					glColor3f(.3f, .4f, .3f);
+				}
+
+				glVertex2f((x + 0) * worldUnitsPerTile, (y + 0)  * worldUnitsPerTile);
+				glVertex2f((x + 0) * worldUnitsPerTile, (y + 1)  * worldUnitsPerTile);
+				glVertex2f((x + 1) * worldUnitsPerTile, (y + 1)  * worldUnitsPerTile);
+				glVertex2f((x + 1) * worldUnitsPerTile, (y + 0)  * worldUnitsPerTile);
+			}
+		}
+
+		glEnd();
+		glEnable(GL_TEXTURE_2D);
+
+		glPopMatrix();
 	}
 }

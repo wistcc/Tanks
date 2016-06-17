@@ -11,8 +11,8 @@
 // 
 #include "App.hpp"
 
-const int WIDTH = 640;
-const int HEIGHT = 640;
+const int WIDTH = 800;
+const int HEIGHT = 800;
 
 int main(int argc, char* argv[])
 {
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
 	// Create Game Object
 	//
-	Engine::App* app = new Engine::App("Boiler Plate!", WIDTH, HEIGHT);
+	Engine::App* app = new Engine::App("Tanks!", WIDTH, HEIGHT);
 
 	// Initialize game
 	//
@@ -36,11 +36,9 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	Combat::TileMap* map = new Combat::TileMap(WIDTH, HEIGHT, 1);
-
 	// Execute game
 	//
-	//app->Execute();
+	app->Execute();
 
 	// Delete game object
 	//
