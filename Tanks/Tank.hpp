@@ -2,20 +2,45 @@
 #ifndef TANK_HPP
 #define TANK_HPP
 
-#include <SDL2/SDL_opengl.h>
-#include "IRender.hpp"
+// C++ STL
+//
+#include <memory>
+
+// Game
+//
+#include "Entity.hpp"
 #include "Sprite.hpp"
+#include "Turret.hpp"
 
 namespace Combat
 {
-	class Tank : Engine::IRender
+	class Tank : public Entity, public Engine::Sprite
 	{
 	public:
-		Tank(const char* szFilePath, int rows, int columns);
-		void Teleport(int _x, int _y) { m_sprite->Teleport(_x, _y); }
-		void Render();
+		/* =============================================================
+		* PUBLIC FUNCTIONS
+		* ============================================================= */
+		Tank(int playerId);
+
+		// CTOR
+		//
+		~Tank();
+
+		// BASE CLASS FUNCTIONS
+		//
+		void ApplyImpulse(float impulseX, float impulseY) override;
+		void Init() override;
+		void Update() override;
+		void Input() override;
+		void Render() override;
+
+		void MoveForward();
+		void RotateRight();
+		void RotateLeft();
+		void Shoot();
+
 	private:
-		Engine::Sprite* m_sprite;
+		std::shared_ptr< Turret >			m_turret;
 	};
 }
 

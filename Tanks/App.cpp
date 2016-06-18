@@ -12,6 +12,7 @@
 //#define STBI_HEADER_FILE_ONLY
 
 #include "Tank.hpp"
+#include "InputManager.hpp"
 
 namespace Engine
 {
@@ -51,7 +52,7 @@ namespace Engine
 
 		map = new Combat::TileMap(800, 800, 1);
 		map->Generate(20, 20, 800 / 20);
-		//tank1 = new Combat::Tank("horse.gif", 4, 4);
+		tank1 = new Combat::Tank(1);
 		//tank2 = new Combat::Tank("explosion.png", 5, 5);
 
 		/*tank1->Teleport(-200, 0);
@@ -99,29 +100,18 @@ namespace Engine
 
 	void App::OnKeyDown(SDL_KeyboardEvent keyBoardEvent)
 	{		
-		switch (keyBoardEvent.keysym.scancode)
-		{
-		default:			
-			SDL_Log("%S was pressed.", keyBoardEvent.keysym.scancode);
-			break;
-		}
+		OnKeyboardDownEvent(keyBoardEvent.keysym.sym);
 	}
 
 	void App::OnKeyUp(SDL_KeyboardEvent keyBoardEvent)
 	{
 		switch (keyBoardEvent.keysym.scancode)
 		{
-		case SDL_SCANCODE_A:
-			
-			break;
-		case SDL_SCANCODE_B:
-			
-			break;
 		case SDL_SCANCODE_ESCAPE:
 			OnExit();
 			break;
 		default:
-			//DO NOTHING
+			OnKeyboardUpEvent(keyBoardEvent.keysym.sym);
 			break;
 		}
 	}
@@ -145,26 +135,19 @@ namespace Engine
 		/*double elapsedTime = endTime - startTime;*/
 
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
-
 		m_nUpdates++;
+
+		tank1->Input();
+		tank1->Update();
 	}
 
 	void App::Render()
 	{
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		
-		/*glBegin(GL_QUADS);
-			glVertex2f(-0.5f, 0.5f);
-			glVertex2f(-0.5f, -0.5f);
-			glVertex2f(0.5f , -0.5f);
-			glVertex2f(0.5f , 0.5f);			
-		glEnd();*/
-		
-		//tank2->Render();
-		//tank1->Render();
 
-		DrawLevel(*map);
+		map->Render();
+		tank1->Render();
 		
 		SDL_GL_SwapWindow(m_mainWindow);
 	}
@@ -281,49 +264,5 @@ namespace Engine
 		// Cleanup SDL pointers
 		//
 		CleanupSDL();
-	}
-
-	void App::DrawLevel(const Combat::TileMap& level) const
-	{
-		int worldUnitsPerTile = level.WorldUnitsPerTile();
-
-		glMatrixMode(GL_MODELVIEW);
-
-		glPushMatrix();
-
-		glTranslatef(worldUnitsPerTile * -0.5f * level.Width(),
-			worldUnitsPerTile * -0.5f * level.Height(),
-			0.f);
-
-		glDisable(GL_TEXTURE_2D);
-		glBegin(GL_QUADS);
-
-		//Draw one strip per row
-		for (int y = 0; y < level.Height(); ++y)
-		{
-			// Draw one quad (two triangles) per column (tile)
-			//		
-			for (int x = 0; x < level.Width(); ++x)
-			{
-				if (level.AtTileLocation(x, y).IsSolid)
-				{
-					glColor3f(1.f, 1.f, .9f);
-				}
-				else
-				{
-					glColor3f(.3f, .4f, .3f);
-				}
-
-				glVertex2f((x + 0) * worldUnitsPerTile, (y + 0)  * worldUnitsPerTile);
-				glVertex2f((x + 0) * worldUnitsPerTile, (y + 1)  * worldUnitsPerTile);
-				glVertex2f((x + 1) * worldUnitsPerTile, (y + 1)  * worldUnitsPerTile);
-				glVertex2f((x + 1) * worldUnitsPerTile, (y + 0)  * worldUnitsPerTile);
-			}
-		}
-
-		glEnd();
-		glEnable(GL_TEXTURE_2D);
-
-		glPopMatrix();
 	}
 }

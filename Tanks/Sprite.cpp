@@ -4,19 +4,19 @@
 
 namespace Engine
 {
-	const int m_framesPerSprite = 4;
-	Sprite::Sprite(const char* szFilePath, int rows, int columns)
+	Sprite::Sprite(const char* szFilePath, int rows, int columns, bool animate, int speed, Engine::Vector2 scale)
 		: m_rows(rows)
 		, m_columns(columns)
-		, x(0)
-		, y(0)
 		, m_currentFrame(0)
 		, m_frameOffsetX(0)
 		, m_frameOffsetY(0)
+		, m_scale(scale)
+		, m_animate(animate)
+		, m_framesPerSprite(speed)
 	{
 		m_texture =
 			TextureManager::Instance().LoadTexture(szFilePath);
-		m_frameWidth  = 1.0f / m_columns;
+		m_frameWidth = 1.0f / m_columns;
 		m_frameHeight = 1.0f / m_rows;
 	}
 
@@ -27,21 +27,29 @@ namespace Engine
 
 	void Sprite::Render()
 	{
-		m_currentFrame++;
-	
-		if (m_currentFrame % m_framesPerSprite == 0)
-		{
-			m_frameOffsetX++;
-			if (m_frameOffsetX >= m_columns)
-			{
-				m_frameOffsetX = 0;
-				m_frameOffsetY++;
+		// TODO: Implement code to handle manual setup of the frames
+		//
+		if (m_animate) m_currentFrame++;
 
-				if (m_frameOffsetY >= m_rows)
+		if (m_framesPerSprite > 0)
+		{
+			if (m_currentFrame % m_framesPerSprite == 0)
+			{
+				m_frameOffsetX++;
+				if (m_frameOffsetX >= m_columns)
 				{
-					m_frameOffsetY = 0;
+					m_frameOffsetX = 0;
+					m_frameOffsetY++;
+
+					if (m_frameOffsetY >= m_rows)
+					{
+						m_frameOffsetY = 0;
+					}
 				}
 			}
+
+			if (!m_animate)
+				m_framesPerSprite = 0;
 		}
 
 		float uv1_x = m_frameWidth  * m_frameOffsetX;
@@ -58,7 +66,7 @@ namespace Engine
 
 		m_texture->ApplyTexture();
 		glLoadIdentity();
-		glTranslatef(x, y, 0);
+		glTranslatef(m_position.x, m_position.y, 0);
 
 		glEnable(GL_TEXTURE_2D);
 		glBegin(GL_TRIANGLE_STRIP);

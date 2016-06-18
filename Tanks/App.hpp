@@ -67,7 +67,6 @@ namespace Engine
 		SDL_GLContext						m_context;
 		GameState::State					m_state;
 		Engine::TimeManager*				m_timer; 
-		void App::DrawLevel(const Combat::TileMap& level) const;
 	};
 }
 #endif /* GAME_HPP */

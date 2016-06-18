@@ -1,6 +1,7 @@
 #include "TileMap.hpp"
 #include <iostream>
 #include <fstream>
+#include <SDL2\SDL_opengl.h>
 
 namespace Combat
 {
@@ -108,6 +109,48 @@ namespace Combat
 		int newValueY = static_cast<int>(fractionY * m_height);
 
 		return AtTileLocation(newValueX, newValueY);
+	}
+
+	void TileMap::Render()
+	{
+		glMatrixMode(GL_MODELVIEW);
+
+		glPushMatrix();
+
+		glTranslatef(m_worldUnitsPerTile * -0.5f * m_width,
+			m_worldUnitsPerTile * -0.5f * m_height,
+			0.f);
+
+		glDisable(GL_TEXTURE_2D);
+		glBegin(GL_QUADS);
+
+		//Draw one strip per row
+		for (int y = 0; y < m_height; ++y)
+		{
+			// Draw one quad (two triangles) per column (tile)
+			//		
+			for (int x = 0; x < m_width; ++x)
+			{
+				if (AtTileLocation(x, y).IsSolid)
+				{
+					glColor3f(1.f, 1.f, .9f);
+				}
+				else
+				{
+					glColor3f(.3f, .4f, .3f);
+				}
+
+				glVertex2f((x + 0) * m_worldUnitsPerTile, (y + 0)  * m_worldUnitsPerTile);
+				glVertex2f((x + 0) * m_worldUnitsPerTile, (y + 1)  * m_worldUnitsPerTile);
+				glVertex2f((x + 1) * m_worldUnitsPerTile, (y + 1)  * m_worldUnitsPerTile);
+				glVertex2f((x + 1) * m_worldUnitsPerTile, (y + 0)  * m_worldUnitsPerTile);
+			}
+		}
+
+		glEnd();
+		glEnable(GL_TEXTURE_2D);
+
+		glPopMatrix();
 	}
 
 	void TileMap::LoadMapContents()

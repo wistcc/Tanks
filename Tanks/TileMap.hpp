@@ -5,11 +5,12 @@
 #include <vector>
 #include <string>
 #include <cassert>
+#include "IRender.hpp"
 #include "Vector2.hpp"
 
 namespace Combat
 {
-	class TileMap
+	class TileMap : public Engine::IRender
 	{
 	public:
 		struct Tile
@@ -22,6 +23,7 @@ namespace Combat
 		Tile& AtTileLocation(int x, int y);
 		const Tile& AtTileLocation(int x, int y) const;
 		Tile& AtWorldLocation(Engine::Vector2& pos);
+		void Render() override;
 
 		inline bool IsInBounds(int tileX, int tileY) const
 		{
